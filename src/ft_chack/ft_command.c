@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_command.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vzohraby <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vzohraby  <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 13:14:14 by vzohraby          #+#    #+#             */
-/*   Updated: 2025/04/08 13:13:57 by vzohraby         ###   ########.fr       */
+/*   Updated: 2025/04/08 22:47:08 by vzohraby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@ void sa(t_stack** a, short flag)
     t_stack* current;
     if (!flag)
         write (1, "sa\n", 3);
+    if (!(*a) || !(*a)->next)
+        return ;
     current = *a;
-    (*a)->index = 1;
     *a = (*a)->next;
-    current->next = *a;
-    *a = current;
-    (*a)->index = 0;
+    current->next = (*a)->next;
+    (*a)->next = current;
+    return ;
 }
 
 void sb(t_stack** b, short flag)
@@ -41,10 +42,15 @@ void ss(t_stack** a, t_stack** b)
 
 void pa(t_stack** a,t_stack**b, short flag)
 {
-    t_stack* b_node = ft_pop_front(b);
-    ft_push_a(a, b_node);
+    t_stack* temp;
+    if (!(b))
+        return;
+    temp = *b;
+    *b = (*b)->next;
+    temp->next = *a;
+    *a = temp;
     if (!flag)
-        write (1, "pa\n", 3);   
+        write (1, "pa\n", 3);
 }
 
 void pb(t_stack** a,t_stack**b, short flag)
@@ -56,10 +62,21 @@ void pb(t_stack** a,t_stack**b, short flag)
 
 void ra(t_stack** a, short flag)
 {
-    t_stack* current = ft_pop_front(a);
-    ft_push_a(a, current);
     if (!flag)
         write (1, "ra\n", 3);
+    t_stack	*temp;
+	t_stack	*current;
+
+	if (!*a || !(*a)->next)
+		return ;
+	temp = *a;
+	*a = (*a)->next;
+	current = *a;
+	while (current->next)
+		current = current->next;
+	current->next = temp;
+	temp->next = NULL;
+	return ;
 }
 
 void rb(t_stack** b, short flag)
@@ -78,9 +95,16 @@ void rr(t_stack** a, t_stack** b, short flag)
 
 void rra(t_stack** a, short flag)
 {
-    t_stack* current = *a;
-    current = ft_pop_front(a);
-    ft_push_back(a, current->index);
+    t_stack* temp;
+    t_stack* current;
+
+    temp = *a;
+    while (temp->next->next)
+        temp = temp->next;
+    current = temp->next;
+    current->next = *a;
+    temp->next = NULL;
+    *a = current;
     if (!flag)
         write (1, "rra\n", 4);
 }

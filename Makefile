@@ -9,6 +9,7 @@ HEADER 		=		ft_push_swap.h
 COBJS 		= 		$(SRCS:.c=.o)
 
 SRCS 		=		src/ft_chack/ft_chack_element.c \
+					src/main.c \
 					src/ft_chack/ft_node_push_pop.c \
 					src/ft_chack/ft_utils.c \
 					src/ft_chack/ft_size_node.c \
@@ -29,7 +30,8 @@ all: $(NAME)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(COBJS)
-	ar rcs $(NAME) $(COBJS)
+	$(CC) $(CFLAGS) $(COBJS) -o $(NAME) 
+	ar rcs $(LIBFT_A) $(OBJS)
 
 clean:
 	rm -rf $(COBJS)

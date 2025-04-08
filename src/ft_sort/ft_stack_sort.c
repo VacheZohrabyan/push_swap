@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_stack_sort.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vzohraby <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vzohraby  <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 11:01:32 by vzohraby          #+#    #+#             */
-/*   Updated: 2025/04/08 13:23:30 by vzohraby         ###   ########.fr       */
+/*   Updated: 2025/04/08 22:48:16 by vzohraby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void push_b_to_a(t_stack** a, t_stack** b)
         max_posiition = find_position(*b, find_max(*b));
         if (max_posiition <= ft_size_node(*b) / 2)
         {
-            while (max_posiition--)
+            while (max_posiition-- > 0)
                 rb(b, 0);
         }
         else 
@@ -102,7 +102,6 @@ void push_b_to_a(t_stack** a, t_stack** b)
                 rrb(b, 0);
         }
         pa(a, b, 0);
-        (*b) = (*b)->next;
     }
 }
 
@@ -111,18 +110,16 @@ void ft_stack_sorted(t_stack** a, t_stack** b)
     int n;
     int size = ft_size_node(*a);
     int counter;
+    
     if (ft_is_sorted(*a))
+        return ;
     if (size == 2)
-        sa(a, 0);
+        return sa(a, 0);
     if (size == 3)
     {
         sort_three(a);
-        printf("sort_node = %d\n", (*a)->nbr);
-        printf("node = %d\n", (*a)->next->nbr);
-        printf("node = %d\n", (*a)->next->next->nbr);
         return ;
     }
-    printf("hello\n");
     if (size == 4)
     {
         sort_four(a, b);
@@ -133,7 +130,7 @@ void ft_stack_sorted(t_stack** a, t_stack** b)
         sort_five(a, b); 
         return ;
     }
-    printf("hello\n");      
+    counter = 0;
     n = optimaize(ft_size_node(*a));
     push_a_to_b(a, b, &counter, n);
     push_b_to_a(a, b);

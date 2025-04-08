@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_node_push_pop.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vzohraby <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vzohraby  <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 18:05:23 by vzohraby          #+#    #+#             */
-/*   Updated: 2025/04/08 13:13:31 by vzohraby         ###   ########.fr       */
+/*   Updated: 2025/04/08 14:02:41 by vzohraby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void ft_push_back(t_stack** a, int value)
 void ft_push_a(t_stack** a, t_stack* current)
 {
     t_stack* tmp = *a;
-    
     if (!(*a))
         *a = current;
     else {

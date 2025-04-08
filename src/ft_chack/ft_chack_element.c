@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_chack_element.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vzohraby <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vzohraby  <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 17:25:07 by vzohraby          #+#    #+#             */
-/*   Updated: 2025/04/05 10:47:16 by vzohraby         ###   ########.fr       */
+/*   Updated: 2025/04/08 23:00:45 by vzohraby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void ft_chack_element(t_stack** a, int argc, char** argv)
     char** inputs;
     int i = 1;
     long int num;
-
+    
     while (i < argc) {
         str = ft_strjoin(str, argv[i]);
         str = ft_strjoin(str, " ");
