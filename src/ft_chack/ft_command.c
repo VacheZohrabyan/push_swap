@@ -6,7 +6,7 @@
 /*   By: vzohraby <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 13:14:14 by vzohraby          #+#    #+#             */
-/*   Updated: 2025/04/07 17:07:10 by vzohraby         ###   ########.fr       */
+/*   Updated: 2025/04/08 13:13:57 by vzohraby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void sa(t_stack** a, short flag)
     current = *a;
     (*a)->index = 1;
     *a = (*a)->next;
-    current = *a;
+    current->next = *a;
     *a = current;
     (*a)->index = 0;
 }
@@ -42,7 +42,7 @@ void ss(t_stack** a, t_stack** b)
 void pa(t_stack** a,t_stack**b, short flag)
 {
     t_stack* b_node = ft_pop_front(b);
-    ft_push(a, b_node);
+    ft_push_a(a, b_node);
     if (!flag)
         write (1, "pa\n", 3);   
 }
@@ -57,7 +57,7 @@ void pb(t_stack** a,t_stack**b, short flag)
 void ra(t_stack** a, short flag)
 {
     t_stack* current = ft_pop_front(a);
-    ft_push_back(&current, current->nbr);
+    ft_push_a(a, current);
     if (!flag)
         write (1, "ra\n", 3);
 }

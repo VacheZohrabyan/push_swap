@@ -11,13 +11,10 @@ int main(int argc, char** argv)
     int i = 1;
     a = NULL;
     b = NULL;
+    printf("hello\n");
+    ft_chack_element(&a, argc, argv);
     while (!ft_is_sorted(a))
         ft_stack_sorted(&a, &b);
-    while (a)
-    {
-        printf("%d\n", a->nbr);
-        a = a->next;
-    }
-
+    printf("hello\n");
     system("leaks a.out");
 }

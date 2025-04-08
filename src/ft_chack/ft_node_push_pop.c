@@ -6,7 +6,7 @@
 /*   By: vzohraby <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 18:05:23 by vzohraby          #+#    #+#             */
-/*   Updated: 2025/04/07 17:09:05 by vzohraby         ###   ########.fr       */
+/*   Updated: 2025/04/08 13:13:31 by vzohraby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,19 @@ void ft_push_back(t_stack** a, int value)
     }
 }
 
+void ft_push_a(t_stack** a, t_stack* current)
+{
+    t_stack* tmp = *a;
+    
+    if (!(*a))
+        *a = current;
+    else {
+        while (tmp->next)
+            tmp = tmp->next;
+        tmp = current;
+    }
+}
+
 t_stack* ft_pop_front(t_stack** a)
 {
     t_stack* current = *a;
@@ -40,12 +53,4 @@ t_stack* ft_pop_front(t_stack** a)
     current->next = *a;
     *a = current;
     return (current);
-}
-
-void ft_push(t_stack** a, t_stack* b)
-{
-    t_stack* current = *a;
-    while (current->next)
-        current = current->next;
-    current->next = b;
 }

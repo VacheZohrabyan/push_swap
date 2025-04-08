@@ -6,7 +6,7 @@
 /*   By: vzohraby <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 11:01:32 by vzohraby          #+#    #+#             */
-/*   Updated: 2025/04/07 16:55:19 by vzohraby         ###   ########.fr       */
+/*   Updated: 2025/04/08 13:23:30 by vzohraby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,25 @@
 
 static void sort_three(t_stack **a)
 {
-    int one = (*a)->nbr;
-    int two = (*a)->next->nbr;
-    int three = (*a)->next->next->nbr;
-
-    if (one > two && two > three && one > three)
+    int mek = (*a)->nbr;
+    int erku = (*a)->next->nbr;
+    int ereq = (*a)->next->next->nbr;
+    if (mek > erku && erku < ereq && mek < ereq)
         sa(a, 0);
-    else if (one > two && two > three)
+    else if (mek > erku && erku > ereq)
     {
         sa(a, 0);
         rra(a, 0);
     }
-    else if (one > two && one > three)
+    else if (mek > erku && erku < ereq && mek > ereq)
         ra(a, 0);
-    else if (one < two && two > three && two < three)
+    else if (mek < erku && erku > ereq && mek < ereq)
     {
         sa(a, 0);
         ra(a, 0);
     }
-    else if (one < two && two < three)
+    else if (mek < erku && erku > ereq && mek > ereq)
         rra(a, 0);
-        
 }
 
 static void sort_four(t_stack** a, t_stack** b)
@@ -104,6 +102,7 @@ void push_b_to_a(t_stack** a, t_stack** b)
                 rrb(b, 0);
         }
         pa(a, b, 0);
+        (*b) = (*b)->next;
     }
 }
 
@@ -113,15 +112,28 @@ void ft_stack_sorted(t_stack** a, t_stack** b)
     int size = ft_size_node(*a);
     int counter;
     if (ft_is_sorted(*a))
-        return ;
     if (size == 2)
         sa(a, 0);
     if (size == 3)
+    {
         sort_three(a);
+        printf("sort_node = %d\n", (*a)->nbr);
+        printf("node = %d\n", (*a)->next->nbr);
+        printf("node = %d\n", (*a)->next->next->nbr);
+        return ;
+    }
+    printf("hello\n");
     if (size == 4)
+    {
         sort_four(a, b);
+        return ;
+    }
     if (size == 5)
-        sort_five(a, b);       
+    {
+        sort_five(a, b); 
+        return ;
+    }
+    printf("hello\n");      
     n = optimaize(ft_size_node(*a));
     push_a_to_b(a, b, &counter, n);
     push_b_to_a(a, b);

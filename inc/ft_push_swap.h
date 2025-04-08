@@ -6,7 +6,7 @@
 /*   By: vzohraby <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:25:00 by vzohraby          #+#    #+#             */
-/*   Updated: 2025/04/07 17:13:58 by vzohraby         ###   ########.fr       */
+/*   Updated: 2025/04/08 13:18:14 by vzohraby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ size_t ft_size_node(t_stack* a);
 void ft_push_back(t_stack** a, int value);
 t_stack* ft_pop_front(t_stack** a);
 void ft_push(t_stack** a, t_stack* b);
+void ft_push_a(t_stack** a, t_stack* current);
+
 void ft_chack_element(t_stack** a, int argc, char** argv);
 void ft_update_index(t_stack** a);
 size_t ft_strlen(const char* s1);
