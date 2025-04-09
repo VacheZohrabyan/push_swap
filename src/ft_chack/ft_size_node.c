@@ -6,18 +6,21 @@
 /*   By: vzohraby <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 09:49:43 by vzohraby          #+#    #+#             */
-/*   Updated: 2025/04/03 12:51:40 by vzohraby         ###   ########.fr       */
+/*   Updated: 2025/04/09 15:32:48 by vzohraby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/ft_push_swap.h"
 
-size_t ft_size_node(t_stack* a) {
-    size_t size = 0;
-    while (a)
-    {
-        ++size;
-        a = a->next;
-    }
-    return (size);
+size_t	ft_size_node(t_stack *a)
+{
+	size_t	size;
+
+	size = 0;
+	while (a)
+	{
+		size++;
+		a = a->next;
+	}
+	return (size);
 }

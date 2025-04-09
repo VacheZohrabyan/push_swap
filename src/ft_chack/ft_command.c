@@ -3,122 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   ft_command.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vzohraby  <marvin@42.fr>                   +#+  +:+       +#+        */
+/*   By: vzohraby <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 13:14:14 by vzohraby          #+#    #+#             */
-/*   Updated: 2025/04/08 22:47:08 by vzohraby         ###   ########.fr       */
+/*   Updated: 2025/04/09 15:49:46 by vzohraby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/ft_push_swap.h"
 
-void sa(t_stack** a, short flag)
+void	sa(t_stack **a, short flag)
 {
-    t_stack* current;
-    if (!flag)
-        write (1, "sa\n", 3);
-    if (!(*a) || !(*a)->next)
-        return ;
-    current = *a;
-    *a = (*a)->next;
-    current->next = (*a)->next;
-    (*a)->next = current;
-    return ;
-}
-
-void sb(t_stack** b, short flag)
-{
-    if (!flag)
-        write (1, "sb\n", 3);
-    sa(b, 1);
-}
-
-void ss(t_stack** a, t_stack** b)
-{
-    write (1, "ss\n", 3);
-    sa(a, 1);
-    sb(b, 1);    
-}
-
-void pa(t_stack** a,t_stack**b, short flag)
-{
-    t_stack* temp;
-    if (!(b))
-        return;
-    temp = *b;
-    *b = (*b)->next;
-    temp->next = *a;
-    *a = temp;
-    if (!flag)
-        write (1, "pa\n", 3);
-}
-
-void pb(t_stack** a,t_stack**b, short flag)
-{
-    pa(a, b, 1);
-    if (!flag)
-        write (1, "pb\n", 3);   
-}
-
-void ra(t_stack** a, short flag)
-{
-    if (!flag)
-        write (1, "ra\n", 3);
-    t_stack	*temp;
 	t_stack	*current;
 
-	if (!*a || !(*a)->next)
+	if (!flag)
+		write (1, "sa\n", 3);
+	if (!(*a) || !(*a)->next)
 		return ;
-	temp = *a;
-	*a = (*a)->next;
 	current = *a;
-	while (current->next)
-		current = current->next;
-	current->next = temp;
-	temp->next = NULL;
+	*a = (*a)->next;
+	current->next = (*a)->next;
+	(*a)->next = current;
 	return ;
 }
 
-void rb(t_stack** b, short flag)
+void	sb(t_stack **b, short flag)
 {
-    ra(b, flag);
-    if (!flag)
-        write (1, "rb\n", 3);
+	if (!flag)
+		write (1, "sb\n", 3);
+	sa(b, !flag);
 }
 
-void rr(t_stack** a, t_stack** b, short flag)
+void	ss(t_stack **a, t_stack **b)
 {
-    ra(a, flag);
-    rb(b, flag);
-    write (1, "rr\n", 3);
+	write (1, "ss\n", 3);
+	sa(a, 1);
+	sb(b, 1);
 }
 
-void rra(t_stack** a, short flag)
+void	pa(t_stack **a, t_stack **b, short flag)
 {
-    t_stack* temp;
-    t_stack* current;
+	t_stack	*temp;
 
-    temp = *a;
-    while (temp->next->next)
-        temp = temp->next;
-    current = temp->next;
-    current->next = *a;
-    temp->next = NULL;
-    *a = current;
-    if (!flag)
-        write (1, "rra\n", 4);
+	if (!(b))
+		return ;
+	temp = *b;
+	*b = (*b)->next;
+	temp->next = *a;
+	*a = temp;
+	if (!flag)
+		write (1, "pa\n", 3);
 }
 
-void rrb(t_stack** b, short flag)
+void	pb(t_stack **a, t_stack **b, short flag)
 {
-    rra(b, flag);
-    if (!flag)
-        write (1, "rrb\n", 4);
-}
-
-void rrr(t_stack** a, t_stack** b, short flag)
-{
-    rra(a, flag);
-    rrb(b, flag);
-    write (1, "rrr\n", 4);
+	pa(a, b, !flag);
+	if (!flag)
+		write (1, "pb\n", 3);
 }
