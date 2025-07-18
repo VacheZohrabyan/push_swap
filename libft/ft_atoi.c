@@ -6,48 +6,62 @@
 /*   By: vzohraby <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 09:00:11 by vzohraby          #+#    #+#             */
-/*   Updated: 2025/04/09 16:25:58 by vzohraby         ###   ########.fr       */
+/*   Updated: 2025/06/12 18:13:06 by vzohraby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/libft.h"
 
-static void	number_func(const char *str, long int *number)
+static void	number_func(char *str, long int *number, int *flag)
 {
 	int	i;
 
 	i = 0;
+	if (str[i] == '-' && str[i + 1] == '\0')
+	{
+		free(str);
+		write (2, "Error\n", 6);
+		exit (0);
+	}
 	while (str[i])
 	{
-		if (str[i] < '0' || str[i] > '9')
+		if (((str[i] < '0' || str[i] > '9') && str[i] != '-')
+			|| str[i + 1] == '-')
 		{
-			write (2, "Error\n", 6);
-			exit (0);
+			*flag = -3;
 		}
 		(*number) = (*number) * 10 + str[i] - '0';
+		if (*number > 2147483647 || *number < -2147483648)
+		{
+			*flag = -3;
+		}
 		++i;
 	}
 }
 
-long int	ft_atoi(const char *str)
+long int	ft_atoi(char *str)
 {
 	long int	number;
 	int			flag;
-	int			i;
 
-	i = 0;
-	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\v'
-		|| str[i] == '\f' || str[i] == '\r' || str[i] == ' ')
-		++i;
+	while (*str == '\t' || *str == '\n' || *str == '\v'
+		|| *str == '\f' || *str == '\r' || *str == ' ')
+		++str;
 	flag = 1;
-	if (str[i] == '-')
+	if (*str == '-')
 	{
 		flag = -1;
-		++i;
+		++str;
 	}
-	else if (str[i] == '+')
-		i++;
+	else if (*str == '+')
+		++str;
+	while (*str == '-' || *str == '+')
+	{
+		return (-3);
+	}
 	number = 0;
-	number_func(str, &number);
+	number_func(str, &number, &flag);
+	if (flag == -3)
+		return (-3);
 	return (number * flag);
 }

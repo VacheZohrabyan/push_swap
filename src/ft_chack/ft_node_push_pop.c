@@ -6,7 +6,7 @@
 /*   By: vzohraby <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 18:05:23 by vzohraby          #+#    #+#             */
-/*   Updated: 2025/04/09 15:39:22 by vzohraby         ###   ########.fr       */
+/*   Updated: 2025/06/11 15:09:44 by vzohraby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_push_back(t_stack **a, int value)
 	newnode = (t_stack *)malloc(sizeof(t_stack));
 	if (!newnode)
 		return ;
+	newnode->next = NULL;
 	if (!(*a))
 	{
 		*a = newnode;

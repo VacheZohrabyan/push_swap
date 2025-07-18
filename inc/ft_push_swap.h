@@ -6,7 +6,7 @@
 /*   By: vzohraby <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:25:00 by vzohraby          #+#    #+#             */
-/*   Updated: 2025/04/09 16:34:44 by vzohraby         ###   ########.fr       */
+/*   Updated: 2025/06/11 17:28:23 by vzohraby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	ft_update_index(t_stack **a);
 size_t	ft_strlen(const char *s1);
 void	ft_free_double(char **inputs);
 void	ft_free(char **str);
+void	ft_free_list(t_stack **a);
+
 int		ft_is_sorted(t_stack *a);
 
 void	sort_three(t_stack **a);

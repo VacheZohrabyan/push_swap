@@ -6,20 +6,25 @@
 /*   By: vzohraby <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 08:03:30 by vzohraby          #+#    #+#             */
-/*   Updated: 2025/04/09 16:19:27 by vzohraby         ###   ########.fr       */
+/*   Updated: 2025/06/11 16:25:58 by vzohraby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/libft.h"
 
-static void	ft_free(char **arr)
+static void	ft_free_double(char **inputs)
 {
 	size_t	i;
 
 	i = 0;
-	while (arr[i])
-		free(arr[i++]);
-	free(arr);
+	while (inputs[i])
+	{
+		free(inputs[i]);
+		inputs[i] = NULL;
+		++i;
+	}
+	free(inputs);
+	inputs = NULL;
 }
 
 static size_t	count_tokens(const char *s, char c)
@@ -82,6 +87,8 @@ static char	*get_next_token(const char **s, char c)
 	while (**s && **s != c)
 		++(*s);
 	token = ft_substr(start, 0, *s - start);
+	if (!token)
+		return (NULL);
 	return (token);
 }
 
@@ -103,7 +110,7 @@ char	**ft_split(char const *s, char c)
 		arr[i] = get_next_token(&s, c);
 		if (!arr[i])
 		{
-			ft_free(arr);
+			ft_free_double(arr);
 			return (NULL);
 		}
 		i++;
